@@ -1,0 +1,13 @@
+# Env folder
+/env/
+
+# IDE req
+/.idea/
+
+# Windows files
+*.bat
+
+# Django vars
+__pycache__/
+assets/
+
