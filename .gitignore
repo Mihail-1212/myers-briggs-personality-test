@@ -7,7 +7,12 @@
 # Windows files
 *.bat
 
-# Django vars
+# Django req
 __pycache__/
 assets/
 
+# Self req
+source.txt
+
+# SQLITE files
+*.sqlite3

@@ -10,11 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Add /apps folder to python path
+# https://stackoverflow.com/a/3948821
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,7 +34,6 @@ if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = ['example.com']
-
 
 """
 Project Apps Definitions
@@ -58,11 +62,10 @@ THIRD_PARTY_APPS_AFTER = [
 ]
 
 PROJECT_APPS = [
-
+    'personality_test'
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS_BEFORE + DJANGO_APPS + THIRD_PARTY_APPS_AFTER + PROJECT_APPS
-
 
 """
 Middleware definitions
@@ -71,7 +74,7 @@ Third Party middleware before django - Middleware installed via requirements.txt
 Third Party middleware after django - Middleware installed via requirements.txt, which add after middleware
 """
 
-DJANGO_MIDDLEWARE  = [
+DJANGO_MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,7 +92,6 @@ THIRD_PARTY_MIDDLEWARE_AFTER_DJANGO = [
 ]
 
 MIDDLEWARE = THIRD_PARTY_MIDDLEWARE_BEFORE_DJANGO + DJANGO_MIDDLEWARE + THIRD_PARTY_MIDDLEWARE_AFTER_DJANGO
-
 
 ROOT_URLCONF = 'myers_briggs_personality_test.urls'
 
@@ -111,7 +113,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myers_briggs_personality_test.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -121,7 +122,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -141,7 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -160,7 +159,6 @@ USE_TZ = True
 
 # https://stackoverflow.com/a/70709867
 USE_L10N = False
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -199,7 +197,7 @@ LOGGING = {
             'class': 'logging.StreamHandler'
         },
     },
-        'loggers': {
+    'loggers': {
         '': {  # 'catch all' loggers by referencing it with the empty string
             'handlers': ['console'],
             'level': 'DEBUG',
