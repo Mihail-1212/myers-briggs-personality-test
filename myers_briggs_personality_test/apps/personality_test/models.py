@@ -9,6 +9,25 @@ class DescriptorType(models.TextChoices):
     PREPARING_SOLUTIONS_METHOD = 'JP', _('The method of preparing solutions')   # Способ подготовки решений (JP)
 
 
+class DescriptorInfo(models.Model):
+    consciousness_orientation = models.BooleanField(default=False, verbose_name='Orientation of consciousness',
+                                                    help_text=_('False - E, True - I'))
+    situation_orientation = models.BooleanField(default=False, verbose_name='Orientation in the situation',
+                                                help_text=_('False - S, True - N'))
+    decision_making_basis = models.BooleanField(default=False, verbose_name='The basis of decision-making',
+                                                help_text=_('False - T, True - F'))
+    preparing_solutions_method = models.BooleanField(default=False, verbose_name='The method of preparing solutions',
+                                                     help_text=_('False - J, True - P'))
+
+    name = models.CharField(max_length=50, unique=False, verbose_name=_('descriptor name'))
+    name_description = models.CharField(max_length=100, unique=False, verbose_name=_('description of descriptor name'))
+    full_description = models.TextField(blank=False, verbose_name=_('full description'))
+
+    class Meta:
+        verbose_name = _('descriptor info')
+        verbose_name_plural = _('descriptor info')
+
+
 class Question(models.Model):
     number = models.IntegerField(blank=True, unique=True, verbose_name=_('number of question'))
     content = models.TextField(max_length=400, blank=False, verbose_name=_('content of question'))

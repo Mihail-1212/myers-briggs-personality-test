@@ -1,9 +1,9 @@
 from django.urls import path
 
 
-from .views import index
+from .views import PersonalityTestView
 
 
 urlpatterns = [
-    path('', index, name="index_page"),
+    path('', PersonalityTestView.as_view(), name="index_page"),
 ]
