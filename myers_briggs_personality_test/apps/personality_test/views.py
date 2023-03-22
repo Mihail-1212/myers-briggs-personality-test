@@ -14,6 +14,8 @@ class PersonalityTestView(View):
         GET method
         return list of questions with options
         """
+        # Get form test
+        test_form = forms.TestForm()
         # Get queryset
         question_list = self.model.objects.all()
         # Get formset from queryset
@@ -21,7 +23,7 @@ class PersonalityTestView(View):
 
         # Render page
         return render(request, self.template_name, context={
-            'question_list': question_list,
+            'test_form': test_form,
             'question_forms': question_forms
         })
 

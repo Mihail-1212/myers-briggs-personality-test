@@ -1,0 +1,15 @@
+{% for hidden in test_form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+
+{% for field in test_form.visible_fields %}
+    <div class="form-group">
+        <label class="">
+            {{field.label}}
+        </label>
+        {{field}}
+        {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+        {% endif %}
+    </div>
+{% endfor %}

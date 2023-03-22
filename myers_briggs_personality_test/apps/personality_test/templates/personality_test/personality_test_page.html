@@ -21,8 +21,14 @@
 </div>
 
 <div class="row">
-    <form  action="{% url 'index_page' %}" method="post">
+    <form  action="{% url 'index_page' %}" method="post" class="mb-5">
         {% csrf_token %}
+
+        {% include 'personality_test/forms/test_form.html' %}
+
+        <hr>
+        <h4>Ответьте  на все вопросы</h4>
+
         {% for question_form in question_forms %}
 
             <div class="col-md-12 question-form-item">
@@ -33,7 +39,7 @@
 
         {% endfor %}
 
-        <input type="submit" value="Отправить">
+        <input type="submit" class="btn btn-primary" value="Отправить">
     </form>
 </div>
 {% endblock content %}
