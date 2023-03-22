@@ -8,6 +8,10 @@
         list-style: none;
         padding: 0;
     }
+
+    .form-group .errorlist {
+        color: #dc3545;
+    }
 </style>
 {% endblock style %}
 
@@ -28,6 +32,8 @@
 
         <hr>
         <h4>Ответьте  на все вопросы</h4>
+
+        {{ question_forms.management_form }}
 
         {% for question_form in question_forms %}
 

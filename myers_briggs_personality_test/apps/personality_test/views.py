@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, DetailView
 
 from . import models, forms
+from .utils import get_descriptor_info_by_test
 
 
 def index_page(request):
@@ -14,6 +16,9 @@ class PersonalityTestView(View):
     model = models.Question
     template_name = "personality_test/personality_test_page.html"
 
+    def get_question_queryset(self):
+        return self.model.objects.all()
+
     def get(self, request):
         """
         GET method
@@ -21,11 +26,8 @@ class PersonalityTestView(View):
         """
         # Get form test
         test_form = forms.TestForm()
-        # Get queryset
-        question_list = self.model.objects.all()
         # Get formset from queryset
-        question_forms = forms.QuestionFormSet(queryset=question_list)
-
+        question_forms = forms.QuestionFormSet(queryset=self.get_question_queryset())
         # Render page
         return render(request, self.template_name, context={
             'test_form': test_form,
@@ -39,13 +41,35 @@ class PersonalityTestView(View):
         """
         # Get form test
         test_form = forms.TestForm(data=request.POST)
-        # Get formset from queryset
-        question_forms = forms.QuestionFormSet(data=request.POST)
+        # Get formset from request
+        question_forms = forms.QuestionFormSet(data=request.POST, queryset=self.get_question_queryset())
         if test_form.is_valid() and question_forms.is_valid():
-            # process form data
-            # redirect to page of descriptor
-            return
-        return
+            # Generate dict with models.DescriptorType:0
+            test_result = {choice: 0 for choice in models.DescriptorType}
+            for record in question_forms.cleaned_data:
+                answer = record['answer_options']
+                descriptor_weight = answer.descriptor_count
+                try:
+                    descriptor_type = models.DescriptorType(answer.descriptor_increase)
+                except ValueError:
+                    # If descriptor_type is not a valid DescriptorType
+                    continue
+                test_result[descriptor_type] += descriptor_weight
+            descriptor_info = get_descriptor_info_by_test(test_result)
+            # Add message to page
+            test_clean = test_form.cleaned_data
+            messages.info(request, _('User %(user)s with email %(email)s, this is page of your type') % {
+                'user': test_clean['user_name'],
+                'email': test_clean['user_email']
+            })
+            messages.info(request, _('Your type is %(type)s') % {'type': descriptor_info})
+            # Redirect to page
+            return redirect(descriptor_info)
+        # Render page
+        return render(request, self.template_name, context={
+            'test_form': test_form,
+            'question_forms': question_forms
+        })
 
 
 class DescriptorListView(ListView):
