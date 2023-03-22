@@ -21,7 +21,7 @@
 </div>
 
 <div class="row">
-    <form  action="{% url 'index_page' %}" method="post" class="mb-5">
+    <form  action="{% url 'test_page' %}" method="post" class="mb-5">
         {% csrf_token %}
 
         {% include 'personality_test/forms/test_form.html' %}

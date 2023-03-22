@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.views import View
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import ListView, DetailView
 
 from . import models, forms
+
+
+def index_page(request):
+    return render(request, "personality_test/index_page.html", context={})
 
 
 class PersonalityTestView(View):
@@ -32,5 +37,26 @@ class PersonalityTestView(View):
         POST method
         Process answers and return test result
         """
-        pass
+        # Get form test
+        test_form = forms.TestForm(data=request.POST)
+        # Get formset from queryset
+        question_forms = forms.QuestionFormSet(data=request.POST)
+        if test_form.is_valid() and question_forms.is_valid():
+            # process form data
+            # redirect to page of descriptor
+            return
+        return
+
+
+class DescriptorListView(ListView):
+    model = models.DescriptorInfo
+    context_object_name = 'descriptor_list'
+    template_name = 'personality_test/descriptor_list.html'
+
+
+class DescriptorDetailView(DetailView):
+    model = models.DescriptorInfo
+    pk_url_kwarg = 'descriptor_id'
+    template_name = 'personality_test/descriptor_detail.html'
+    context_object_name = 'descriptor_object'
 

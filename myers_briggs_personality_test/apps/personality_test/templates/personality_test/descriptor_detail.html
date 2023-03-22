@@ -1,0 +1,23 @@
+{% extends 'personality_test/descriptor_list.html' %}
+
+
+
+{% block content %}
+
+
+<div class="row">
+    <h2>{{ descriptor_object.name }} <small>{{ descriptor_object }}</small></h2>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {{ descriptor_object.name_decoding }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {{ descriptor_object.full_description|safe|linebreaks }}
+    </div>
+</div>
+{% endblock content %}

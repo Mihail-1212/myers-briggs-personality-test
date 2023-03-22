@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -29,17 +30,20 @@ class DescriptorInfo(models.Model):
         unique_together = ('consciousness_orientation', 'situation_orientation',
                            'decision_making_basis', 'preparing_solutions_method')
 
+    def get_absolute_url(self):
+        return reverse("descriptor_detail", kwargs={"descriptor_id": self.id})
+
     def get_consciousness_orientation(self):
         return 'E' if self.consciousness_orientation else 'I'
 
     def get_situation_orientation(self):
-        return 'S' if self.consciousness_orientation else 'N'
+        return 'S' if self.situation_orientation else 'N'
 
     def get_decision_making_basis(self):
-        return 'T' if self.consciousness_orientation else 'F'
+        return 'T' if self.decision_making_basis else 'F'
 
     def get_preparing_solutions_method(self):
-        return 'J' if self.consciousness_orientation else 'P'
+        return 'J' if self.preparing_solutions_method else 'P'
 
     def __str__(self):
         """
