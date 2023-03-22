@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+{{ block.super }}
+<style>
+    .question-form-item ul {
+        list-style: none;
+        padding: 0;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="row">
+    <h1>
+        Личностный тест Майерс-Бриггс
+    </h1>
+</div>
+
+<div class="row">
+    <form  action="{% url 'index_page' %}" method="post">
+        {% csrf_token %}
+        {% for question_form in question_forms %}
+
+            <div class="col-md-12 question-form-item">
+                {% include 'personality_test/forms/question_form.html' %}
+            </div>
+
+            {% if not forloop.last %} <hr>{% endif %}
+
+        {% endfor %}
+
+        <input type="submit" value="Отправить">
+    </form>
+</div>
+{% endblock content %}

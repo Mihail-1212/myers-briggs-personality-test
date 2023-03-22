@@ -1,0 +1,13 @@
+{% for hidden in question_form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+
+
+{% for field in question_form.visible_fields %}
+    <div class="form-group">
+        <label class="form-check-label">
+            {{field.label}}
+        </label>
+        {{field}}
+    </div>
+{% endfor %}

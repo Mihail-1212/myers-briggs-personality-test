@@ -1,0 +1,14 @@
+{% if widget.wrap_label %}
+    <label {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %} class="form-check">
+{% endif %}
+
+        <input type="{{ widget.type }}"
+               name="{{ widget.name }}"{% if widget.value != None %}
+               value="{{ widget.value|stringformat:'s' }}"{% endif %}
+               class="form-check-input"
+               {% include "django/forms/widgets/attrs.html" %}>
+
+{% if widget.wrap_label %}
+    {{ widget.label }}
+    </label>
+{% endif %}

@@ -20,7 +20,7 @@ class DescriptorInfo(models.Model):
                                                      help_text=_('False - J, True - P'))
 
     name = models.CharField(max_length=50, unique=False, verbose_name=_('descriptor name'))
-    name_description = models.CharField(max_length=100, unique=False, verbose_name=_('description of descriptor name'))
+    name_decoding = models.CharField(max_length=100, unique=False, verbose_name=_('decoding of descriptor name'))
     full_description = models.TextField(blank=False, verbose_name=_('full description'))
 
     class Meta:
