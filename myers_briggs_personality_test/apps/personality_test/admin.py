@@ -7,6 +7,7 @@ class AnswerOptionInline(admin.TabularInline):
     model = AnswerOption
     max_num = 2
     min_num = 2
+    can_delete = False
 
 
 class QuestionAdmin(admin.ModelAdmin):

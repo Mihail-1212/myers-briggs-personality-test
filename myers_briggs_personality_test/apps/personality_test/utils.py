@@ -5,7 +5,7 @@ from .models import DescriptorType, DescriptorInfo, Question
 
 def get_descriptor_info_by_test(test_result):
     """
-    TODO add description
+    Get test_result as dict, process answers and return DescriptorInfo instance
     """
     descriptor_info = {'consciousness_orientation': False, 'situation_orientation': False,
                        'decision_making_basis': False, 'preparing_solutions_method': False}
