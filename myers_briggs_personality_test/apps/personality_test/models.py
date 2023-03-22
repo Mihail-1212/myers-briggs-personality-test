@@ -11,21 +11,42 @@ class DescriptorType(models.TextChoices):
 
 class DescriptorInfo(models.Model):
     consciousness_orientation = models.BooleanField(default=False, verbose_name='Orientation of consciousness',
-                                                    help_text=_('False - E, True - I'))
+                                                    help_text=_('False - I, True - E'))
     situation_orientation = models.BooleanField(default=False, verbose_name='Orientation in the situation',
-                                                help_text=_('False - S, True - N'))
+                                                help_text=_('False - N, True - S'))
     decision_making_basis = models.BooleanField(default=False, verbose_name='The basis of decision-making',
-                                                help_text=_('False - T, True - F'))
+                                                help_text=_('False - F, True - T'))
     preparing_solutions_method = models.BooleanField(default=False, verbose_name='The method of preparing solutions',
-                                                     help_text=_('False - J, True - P'))
+                                                     help_text=_('False - P, True - J'))
 
-    name = models.CharField(max_length=50, unique=False, verbose_name=_('descriptor name'))
-    name_decoding = models.CharField(max_length=100, unique=False, verbose_name=_('decoding of descriptor name'))
+    name = models.CharField(max_length=50, verbose_name=_('descriptor name'))
+    name_decoding = models.CharField(max_length=100, verbose_name=_('decoding of descriptor name'))
     full_description = models.TextField(blank=False, verbose_name=_('full description'))
 
     class Meta:
         verbose_name = _('descriptor info')
         verbose_name_plural = _('descriptor info')
+        unique_together = ('consciousness_orientation', 'situation_orientation',
+                           'decision_making_basis', 'preparing_solutions_method')
+
+    def get_consciousness_orientation(self):
+        return 'E' if self.consciousness_orientation else 'I'
+
+    def get_situation_orientation(self):
+        return 'S' if self.consciousness_orientation else 'N'
+
+    def get_decision_making_basis(self):
+        return 'T' if self.consciousness_orientation else 'F'
+
+    def get_preparing_solutions_method(self):
+        return 'J' if self.consciousness_orientation else 'P'
+
+    def __str__(self):
+        """
+        String type of "ESTJ"
+        """
+        return "%s%s%s%s" % (self.get_consciousness_orientation(), self.get_situation_orientation(),
+                             self.get_decision_making_basis(), self.get_preparing_solutions_method())
 
 
 class Question(models.Model):

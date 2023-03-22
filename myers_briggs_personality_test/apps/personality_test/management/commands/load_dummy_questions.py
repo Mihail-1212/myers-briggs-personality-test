@@ -9,10 +9,10 @@ from personality_test.models import Question, AnswerOption
 
 
 class Command(BaseCommand):
-    help = 'Load question dummy data'
+    help = 'Load question dummy question list'
 
     def handle(self, *args, **options):
-        dummy_file_name = 'data.csv'
+        dummy_file_name = 'questions.csv'
         commands_directory = os.path.join(Path(__file__).resolve().parent.parent, 'dummy')
         dummy_file_path = os.path.join(commands_directory, dummy_file_name)
 
