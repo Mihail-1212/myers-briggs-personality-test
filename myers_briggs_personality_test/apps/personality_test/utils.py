@@ -14,10 +14,13 @@ def get_descriptor_info_by_test(test_result):
         descriptor_type = DescriptorType(descriptor_type_str)
         # Get attr name
         attr_name = descriptor_type.name.lower()
-        # Get question queryset of description type elements
-        questions = Question.objects.filter(answer_options__descriptor_increase=descriptor_type)
+
+        # Get descriptor max weight
+        descriptor_count_weight = Question.get_max_weight_descriptor_type(descriptor_type)
+
         # Bool result is more than half of all questions with this descriptor type
-        attr_value = result > (questions.count() / 2)
+        attr_value = result > (descriptor_count_weight / 2)
+
         # Set attr by name
         descriptor_info[attr_name] = attr_value
     try:

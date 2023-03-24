@@ -79,6 +79,23 @@ class Question(models.Model):
     def __str__(self):
         return "(%s) %s" % (self.number, self.content)
 
+    @classmethod
+    def get_max_weight_descriptor_type(cls, descriptor_type):
+        """
+        Return max weight of given "descriptor_type" var
+        """
+        assert isinstance(descriptor_type, DescriptorType),\
+            '"descriptor_type" variable must be "DescriptorType" type'
+
+        question_objs = cls.objects.filter(answer_options__descriptor_increase=descriptor_type)
+
+        max_weight = 0
+        for question in question_objs:
+            answer_obj = question.answer_options.filter(descriptor_increase=descriptor_type).\
+                order_by('-descriptor_count').first()
+            max_weight += answer_obj.descriptor_count
+        return max_weight
+
 
 class AnswerOption(models.Model):
     answer_text = models.CharField(max_length=200, verbose_name=_('answer text'))
