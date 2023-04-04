@@ -6,9 +6,14 @@ from . import models
 from .fields import AnswerRadioSelect
 
 
-class TestForm(forms.Form):
-    user_name = forms.CharField(required=True, label=_("Full name"), help_text=_("Enter your name"))
-    user_email = forms.EmailField(required=True, label=_("Email"), help_text=_("Enter your contact email"))
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = models.UserResult
+        fields = ['user_name', 'user_email']
+        help_texts = {
+            'user_name': _("Enter your name"),
+            'user_email': _("Enter your contact email"),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TestForm, self).__init__(*args, **kwargs)
@@ -18,8 +23,6 @@ class TestForm(forms.Form):
 
 
 class QuestionForm(forms.ModelForm):
-    # user_name = forms.CharField(required=True, label=_("Enter your name"))
-    # user_email = forms.EmailField(required=True, label=_("Enter your contact email"))
     answer_options = forms.ModelChoiceField(
         widget=AnswerRadioSelect(),
         queryset=None,

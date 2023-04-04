@@ -43,28 +43,43 @@ class PersonalityTestView(View):
         test_form = forms.TestForm(data=request.POST)
         # Get formset from request
         question_forms = forms.QuestionFormSet(data=request.POST, queryset=self.get_question_queryset())
+
         if test_form.is_valid() and question_forms.is_valid():
+            # Init user result model objs
+            user_result = test_form.save(commit=False)
+            user_responses = []
             # Generate dict with models.DescriptorType:0
             test_result = {choice: 0 for choice in models.DescriptorType}
             for record in question_forms.cleaned_data:
                 answer = record['answer_options']
                 descriptor_weight = answer.descriptor_count
+                user_responses.append(models.UserResponseQuestion(user_result=user_result, answer=answer))
                 try:
                     descriptor_type = models.DescriptorType(answer.descriptor_increase)
                 except ValueError:
-                    # If descriptor_type is not a valid DescriptorType
+                    # If descriptor_type is not a valid DescriptorType or is Null
                     continue
                 test_result[descriptor_type] += descriptor_weight
+
             descriptor_info = get_descriptor_info_by_test(test_result)
+            user_result.descriptor_info = descriptor_info
+
+            # TODO: try-catch
+            try:
+                user_result.save()
+                models.UserResponseQuestion.objects.bulk_create(user_responses)
+            except Exception:
+                pass
+
             # Add message to page
-            test_clean = test_form.cleaned_data
             messages.info(request, _('User %(user)s with email %(email)s, this is page of your type') % {
-                'user': test_clean['user_name'],
-                'email': test_clean['user_email']
+                'user': user_result.user_name,
+                'email': user_result.user_email
             })
             messages.info(request, _('Your type is %(type)s') % {'type': descriptor_info})
             # Redirect to page
             return redirect(descriptor_info)
+
         # Render page
         return render(request, self.template_name, context={
             'test_form': test_form,

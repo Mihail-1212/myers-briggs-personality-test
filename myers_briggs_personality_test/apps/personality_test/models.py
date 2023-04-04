@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from .managers import UserResponseQuestionManager
+
 
 class DescriptorType(models.TextChoices):
     CONSCIOUSNESS_ORIENTATION = 'EI', _('Orientation of consciousness')         # Ориентация сознания (EI)
@@ -112,3 +114,44 @@ class AnswerOption(models.Model):
 
     def __str__(self):
         return "%s" % self.answer_text
+
+
+class UserResult(models.Model):
+    user_name = models.CharField(max_length=150, verbose_name=_('user name'))
+    user_email = models.EmailField(verbose_name=_('user email address'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('updated at'))
+
+    descriptor_info = models.ForeignKey(DescriptorInfo, on_delete=models.CASCADE, verbose_name=_('descriptor info'),
+                                        related_name='user_results')
+
+    class Meta:
+        verbose_name = _('user result')
+        verbose_name_plural = _('user results')
+
+    def __str__(self):
+        return "%s (%s)" % (self.user_name, self.user_email)
+
+
+class UserResponseQuestion(models.Model):
+    # Override object manager for current model
+    objects = UserResponseQuestionManager()
+
+    question_content = models.TextField(blank=True, max_length=400, verbose_name=_('content of question'))
+    answer_content = models.TextField(blank=True, max_length=400, verbose_name=_('content of question'))
+    answer_descriptor_count = models.IntegerField(blank=True, verbose_name=_('descriptor count number'))
+    answer_descriptor_type = models.CharField(blank=True, max_length=50, choices=DescriptorType.choices,
+                                              verbose_name=_('descriptor type to increase'))
+
+    answer = models.ForeignKey(AnswerOption, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('answer'),
+                               related_name='user_responses')
+    user_result = models.ForeignKey(UserResult, on_delete=models.CASCADE, verbose_name=_('user response to question'),
+                                    related_name='user_responses')
+
+    class Meta:
+        verbose_name = _('user response to question')
+        verbose_name_plural = _('user responses to question')
+
+    def __str__(self):
+        return "%s" % (self.answer.question.content, )
+
