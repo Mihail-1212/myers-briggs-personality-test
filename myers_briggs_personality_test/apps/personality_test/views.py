@@ -53,7 +53,7 @@ class PersonalityTestView(View):
             for record in question_forms.cleaned_data:
                 answer = record['answer_options']
                 descriptor_weight = answer.descriptor_count
-                user_responses.append(models.UserResponseQuestion(user_result=user_result, answer=answer))
+                user_responses.append(models.UserResponseQuestion(answer=answer))
                 try:
                     descriptor_type = models.DescriptorType(answer.descriptor_increase)
                 except ValueError:
@@ -64,12 +64,8 @@ class PersonalityTestView(View):
             descriptor_info = get_descriptor_info_by_test(test_result)
             user_result.descriptor_info = descriptor_info
 
-            # TODO: try-catch
-            try:
-                user_result.save()
-                models.UserResponseQuestion.objects.bulk_create(user_responses)
-            except Exception:
-                pass
+            if not user_result.save_create_user_responses(user_responses):
+                messages.error(request, _('Data not saved, contact your system administrator!'))
 
             # Add message to page
             messages.info(request, _('User %(user)s with email %(email)s, this is page of your type') % {

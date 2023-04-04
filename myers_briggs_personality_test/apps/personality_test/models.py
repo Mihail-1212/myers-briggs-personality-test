@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -131,6 +131,27 @@ class UserResult(models.Model):
 
     def __str__(self):
         return "%s (%s)" % (self.user_name, self.user_email)
+
+    @transaction.atomic
+    def save_create_user_responses(self, user_responses):
+        """
+        Save instance of user result and create user responses for this instance
+        and return boolean result of save operation
+        """
+        for user_response in user_responses:
+            user_response.user_result = self
+        # Set transaction point
+        sid = transaction.savepoint()
+        # Save current instance
+        try:
+            self.save()
+            UserResponseQuestion.objects.bulk_create(user_responses)
+            transaction.savepoint_commit(sid)
+        except Exception:
+            # Rollback on error
+            transaction.savepoint_rollback(sid)
+            return False
+        return True
 
 
 class UserResponseQuestion(models.Model):
