@@ -1,15 +1,9 @@
-.ReadMsgBody,
-.ExternalClass {
-    width: 100%;
-}
-
-.ExternalClass,
-.ExternalClass p,
-.ExternalClass span,
-.ExternalClass font,
-.ExternalClass td,
-.ExternalClass div {
-    line-height: 100%;
+html,
+body{
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 100% !important;
 }
 
 body,
@@ -22,6 +16,11 @@ a {
     -webkit-font-smoothing: antialiased;
 }
 
+.main-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
 table,
 td {
     mso-table-lspace: 0pt;
@@ -32,14 +31,6 @@ img {
     -ms-interpolation-mode: bicubic;
 }
 
-html,
-body,
-#wrappertable {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 100% !important;
-}
 
 img {
     display: block;
@@ -77,54 +68,6 @@ ul.remove-list-style {
 ul#main-menu .nav-link {
     text-align: right;
     margin: 5px 0;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
-
-@media screen and (max-device-width: 480px),
-screen and (max-width: 480px) {}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {}
-
-@media (-webkit-min-device-pixel-ratio: 1.5),
-(min-resolution: 144dpi) {}
-
-@media only screen and (max-width: 599px) {
-    div[class="block"] {
-      width: 100% !important;
-      max-width: none !important;
-    }
-
-    table[class="full-width"] {
-      width: 100% !important;
-    }
-
-    table[class="center"],
-    td[class="center"] {
-      text-align: center !important;
-      float: none !important;
-    }
-
-    table[class="remove"] {
-      display: none;
-    }
-}
-
-@media only screen and (max-width: 413px) {
-    div[class="block"] {
-      width: 100% !important;
-      max-width: none !important;
-    }
-}
-
-@media only screen and (max-width: 374px) {
-    div[class="block"] {
-      width: 100% !important;
-      max-width: none !important;
-    }
 }
 
 button.ui-btn, a.ui-btn, input[type="submit"].ui-btn {
@@ -202,4 +145,53 @@ input[type="submit"].ui-btn:disabled {
   color: black;
 }
 
-/* Radios */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
+
+@media screen and (max-device-width: 480px),
+screen and (max-width: 480px) {}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {}
+
+@media only screen and (max-width: 599px) {
+    div[class="block"] {
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    table[class="full-width"] {
+      width: 100% !important;
+    }
+
+    table[class="center"],
+    td[class="center"] {
+      text-align: center !important;
+      float: none !important;
+    }
+
+    table[class="remove"] {
+      display: none;
+    }
+}
+
+@media only screen and (max-width: 413px) {
+    div[class="block"] {
+      width: 100% !important;
+      max-width: none !important;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    div[class="block"] {
+      width: 100% !important;
+      max-width: none !important;
+    }
+}
+
+
