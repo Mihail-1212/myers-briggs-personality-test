@@ -1,0 +1,74 @@
+{% load i18n %}
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #19abff;">
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td align="center" valign="top" style="padding: 0 45px;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 30px; margin-bottom: 30px">
+                  <tbody>
+                    <tr>
+                      <td width="510" align="center" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td width="41%" align="left" valign="top">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="center" valign="top" style="color: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 15pt; line-height: normal; font-weight: 700; text-transform: uppercase;">
+                                        <a href="{% url 'index_page' %}">{% translate "Personality Test of Myers & Briggs" %}</a>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding-top: 31px; line-height: 0px;"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td width="79" align="center" valign="top" style="padding-top: 4px; line-height: 0px;background: #2c3336;"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                              <td style="color: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 17px; mso-line-height-rule: exactly; line-height: 26px; font-weight: 400;padding: 0 30px 0 0">
+                                <ul id="main-menu" class="sm sm-vertical">
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'index_page' %}">{% translate "Home" %}</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'test_page' %}">{% translate "Test" %}</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'descriptor_list' %}">{% translate "Personality types" %}</a>
+                                  </li>
+                                  {% if user.is_staff %}
+                                    <li class="nav-item">
+                                      <a class="nav-link" target="_blank" href="{% url 'admin:index' %}">{% translate "Admin" %}</a>
+                                    </li>
+                                  {% endif %}
+                                </ul>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

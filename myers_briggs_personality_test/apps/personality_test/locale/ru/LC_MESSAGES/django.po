@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-22 17:34+0500\n"
+"POT-Creation-Date: 2023-04-06 18:40+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,113 +19,212 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\myers_briggs_personality_test\apps\personality_test\admin.py:51
+msgid "Descriptor info"
+msgstr "информация о дескрипторе"
 
-#: .\forms.py:10
-msgid "Full name"
-msgstr "Полное имя"
+#: .\myers_briggs_personality_test\apps\personality_test\admin.py:52
+msgid "Important dates"
+msgstr "Важные даты"
 
-#: .\forms.py:10
+#: .\myers_briggs_personality_test\apps\personality_test\forms.py:14
 msgid "Enter your name"
-msgstr "Введите свое имя"
+msgstr "Введите ваше имя"
 
-#: .\forms.py:11
-msgid "Email"
-msgstr "Адрес электронной почты"
-
-#: .\forms.py:11
+#: .\myers_briggs_personality_test\apps\personality_test\forms.py:15
 msgid "Enter your contact email"
-msgstr "Введите свой адрес электронной почты"
+msgstr "Введите контактный адрес электронной почты"
 
-#: .\models.py:7
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:9
 msgid "Orientation of consciousness"
 msgstr "Ориентация сознания (EI)"
 
-#: .\models.py:8
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:10
 msgid "Orientation in the situation"
 msgstr "Ориентация в ситуации (SN)"
 
-#: .\models.py:9
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:11
 msgid "The basis of decision-making"
 msgstr "Основа принятия решений (TF)"
 
-#: .\models.py:10
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:12
 msgid "The method of preparing solutions"
 msgstr "Способ подготовки решений (JP)"
 
-#: .\models.py:15
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:17
 msgid "False - I, True - E"
 msgstr "Ложь - I, Правда - E"
 
-#: .\models.py:17
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:19
 msgid "False - N, True - S"
 msgstr "Ложь - N, Правда - S"
 
-#: .\models.py:19
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:21
 msgid "False - F, True - T"
 msgstr "Ложь - F, Правда -T"
 
-#: .\models.py:21
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:23
 msgid "False - P, True - J"
 msgstr "Ложь - P, Правда - J"
 
-#: .\models.py:23
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:25
 msgid "descriptor name"
 msgstr "наименование дескриптора"
 
-#: .\models.py:24
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:26
 msgid "decoding of descriptor name"
 msgstr "расшифровка наименования дескриптора"
 
-#: .\models.py:25
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:27
 msgid "full description"
 msgstr "полное описание"
 
-#: .\models.py:28 .\models.py:29
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:30
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:31
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:125
 msgid "descriptor info"
 msgstr "информация о дескрипторе"
 
-#: .\models.py:57
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:59
 msgid "number of question"
 msgstr "номер вопроса"
 
-#: .\models.py:58
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:60
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:161
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:162
 msgid "content of question"
 msgstr "содержание вопроса"
 
-#: .\models.py:61 .\models.py:89
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:63
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:108
 msgid "question"
 msgstr "вопрос"
 
-#: .\models.py:62
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:64
 msgid "questions"
 msgstr "вопросы"
 
-#: .\models.py:84
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:103
 msgid "answer text"
 msgstr "текст ответа"
 
-#: .\models.py:85
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:104
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:163
 msgid "descriptor count number"
 msgstr "вес дескриптора"
 
-#: .\models.py:87
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:106
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:165
 msgid "descriptor type to increase"
 msgstr "тип дескриптора к увеличению"
 
-#: .\models.py:93
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:112
 msgid "answer option"
 msgstr "вариант ответа"
 
-#: .\models.py:94
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:113
 msgid "answer options"
 msgstr "варианты ответа"
 
-#: .\views.py:61
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:120
+msgid "user name"
+msgstr "имя пользователя"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:121
+msgid "user email address"
+msgstr "контактный адрес пользователя"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:122
+msgid "created at"
+msgstr "создано"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:123
+msgid "updated at"
+msgstr "обновлено"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:129
+msgid "user result"
+msgstr "результат пользователя"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:130
+msgid "user results"
+msgstr "результаты пользователя"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:167
+msgid "answer"
+msgstr "ответ"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:169
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:173
+msgid "user response to question"
+msgstr "ответ пользователя на вопрос"
+
+#: .\myers_briggs_personality_test\apps\personality_test\models.py:174
+msgid "user responses to question"
+msgstr "ответы пользователя на вопросы"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\descriptor_list.html:24
+msgid "Personality types"
+msgstr "Типы личности"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\descriptor_list.html:45
+msgid "Go to"
+msgstr "Перейти"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\index_page.html:23
+msgid "Instruction"
+msgstr "Инструкция"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\index_page.html:38
+msgid ""
+"This questionnaire is designed to identify typical behaviors and personality "
+"characteristics. It consists of 70 statements (questions), each of which has "
+"two possible answers. You need to choose ONE. All answers are equal, among "
+"them there are no \"right\" or \"wrong\"! So there is no need to \"guess\" "
+"the answer. Choose the answer that is characteristic of your behavior in "
+"most life situations. Work consistently without skipping questions. Answer "
+"truthfully if you want to know something about yourself and not about some "
+"mythical person."
+msgstr ""
+"Этот вопросник предназначен для определения типичных способов поведения и личностных "
+"характеристик. Он состоит из 70 утверждений (вопросов), каждое из которых имеет "
+"два варианта ответа. Вам необходимо выбрать ОДИН. Все ответы равноценны, среди "
+"них нет \"правильных\" или \"неправильных\"! Поэтому не нужно \"угадывать\" "
+"ответ. Выберите ответ, который свойствен вашему поведению в "
+"большинстве жизненных ситуаций. Работайте последовательно, не пропуская вопросов. Отвечайте "
+"правдиво, если вы хотите узнать что-то о себе, а не о какой-то "
+"мифической личности. "
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\index_page.html:79
+msgid "go to test"
+msgstr "перейти к тесту"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\personality_test_page.html:116
+msgid "Answer all questions"
+msgstr "Ответьте на все вопросы"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\personality_test_page.html:131
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\personality_test_page.html:132
+msgid "Next"
+msgstr "Следующий"
+
+#: .\myers_briggs_personality_test\apps\personality_test\templates\personality_test\personality_test_page.html:135
+msgid "Send"
+msgstr "Отправить"
+
+#: .\myers_briggs_personality_test\apps\personality_test\views.py:68
+msgid "Data not saved, contact your system administrator!"
+msgstr "Данные не сохранены, обратитесь к системному администратору!"
+
+#: .\myers_briggs_personality_test\apps\personality_test\views.py:71
 #, python-format
 msgid "User %(user)s with email %(email)s, this is page of your type"
 msgstr "Пользователь %(user)s с электронной почтой %(email)s, это страница вашего типа"
 
-#: .\views.py:65
+#: .\myers_briggs_personality_test\apps\personality_test\views.py:75
 #, python-format
 msgid "Your type is %(type)s"
 msgstr "Ваш тип - %(type)s"

@@ -1,74 +1,67 @@
 <!DOCTYPE html>
-{% load static %}
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE|default:'en-us' }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
-	<title>{% block title %}Personality Test of Myers & Briggs{% endblock title %}</title>
+	<title>{% block title %}{% translate "Personality Test of Myers & Briggs" %}{% endblock title %}</title>
 	<meta charset="utf-8">
+
 	<!-- Import main styles -->
-<!--	<link rel="stylesheet" type="text/css" href="{% static 'css/main_style.css' %}">-->
-	<!-- Import Roboto font -->
-	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <!--  Import bootstrap styles  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'base/styles/main.css' %}">
+
+    <!-- Load css for navbar -->
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/vadikom/smartmenus@1.2.1/dist/css/sm-core-css.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/vadikom/smartmenus@1.2.1/dist/css/sm-blue/sm-blue.css">
+
+    <!-- Load slick slider plugin -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
 	{% block style %}
 	{% endblock style %}
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarToggler">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			  <li class="nav-item mr-2">
-				<a class="nav-link" href="{% url 'index_page' %}">Главная</a>
-			  </li>
-			  <li class="nav-item mr-2">
-				<a class="nav-link" href="{% url 'test_page' %}">Тест</a>
-			  </li>
-              <li class="nav-item mr-2">
-				<a class="nav-link" href="{% url 'descriptor_list' %}">Типы личности</a>
-			  </li>
-                {% if user.is_staff %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'admin:index' %}">Администрирование</a>
-					</li>
-				{% endif %}
-			</ul>
-		  </div>
-		</nav>
-	</header>
+
+<body id="body-layout">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="wrappertable" style="table-layout: fixed;">
+      <tr>
+        <td align="center" valign="top">
+          <table cellpadding="0" cellspacing="0" border="0" style="background: #ffffff;">
+            <tr>
+              <td width="600" align="center" valign="top">
+			  	{% include 'base/header.html' %}
+
+				{% block content %}{% endblock content %}
+
+                {% include 'base/footer.html' %}
+			  </td>
+			</tr>
+		  </table>
+		</td>
+	  </tr>
+	</table>
 
     <div class="alerts">
-        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-          </symbol>
-        </svg>
-
         {% if messages %}
             {% for message in messages %}
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-                        <strong>Info</strong>
+                    <div class="alert alert-info">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>{% translate "Info" %}</strong>
                         {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
             {% endfor %}
         {% endif %}
     </div>
 
-	<main class="container" id="app">
-		{% block content %}
-		{% endblock content %}
-	</main>
+    <!-- Load jquery scripts-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- SmartMenus jQuery plugin -->
+    <script src="https://cdn.jsdelivr.net/gh/vadikom/smartmenus@1.2.1/dist/jquery.smartmenus.js"></script>
+    <!-- Slick js plugin -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <!-- Load bootstrap scripts-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	{% block javascript %}
 	{% endblock javascript %}
 

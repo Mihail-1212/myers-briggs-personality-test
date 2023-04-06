@@ -1,38 +1,97 @@
 {% extends 'base.html' %}
-
+{% load static i18n %}
 {% block content %}
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #202020;">
+  <tbody>
+    <tr>
+      <td style="background-image: url({% static 'base/img/bgimg01.jpg' %});background-repeat: no-repeat; background-position: 50% 0;" background="images/bgimg01.jpg" align="center" valign="top">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td align="center" valign="top" style="padding: 0 45px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td align="left" valign="top">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="color: #ffffff; padding-top: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 20px; mso-line-height-rule: exactly; line-height: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;">{% translate "Instruction" %}:</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding-top: 19px; line-height: 0px;"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="color: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 17px; mso-line-height-rule: exactly; line-height: 26px; font-weight: 400;">
+                                        <p>{% translate 'This questionnaire is designed to identify typical behaviors and personality characteristics. It consists of 70 statements (questions), each of which has two possible answers. You need to choose ONE. All answers are equal, among them there are no "right" or "wrong"! So there is no need to "guess" the answer. Choose the answer that is characteristic of your behavior in most life situations. Work consistently without skipping questions. Answer truthfully if you want to know something about yourself and not about some mythical person.' %}
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="row">
-    <h2>
-        Личностный тест Майерс-Бриггс
-    </h2>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <p>
-            <p>Myers-Briggs, MBTI представляет собой оценку характеристик личности, основанную на оценке предпочтений человека в четырех сферах:</p>
-            <p>направленность вовне или вовнутрь; внимание к сенсорной информации или добавление интерпретации; решение по логике или по интуиции; стремление выносить суждения или оставаться открытым для информации.</p>
-            <p>Тест MBTI был разработан в 1940-х годах Кэтрин Кук Бриггс и ее дочерью Изабель Бриггс Майерс на основе типологии личности, созданной психоаналитиком Карлом Юнгом. Результаты теста MBTI дают психологический «тип» человека, обозначенный четырьмя буквами, по одной для каждого предпочтения:</p>
-            <p>Экстраверсия (E) или Интроверсия (I); Сенсорное (S) или Интуитивное (N) восприятие; Логическое мышление (T) или Чувственное принятие решений (F); Суждение (J) или Восприятие (P). Результаты объединяются в одно из 16 возможных описаний типов, такие как ENTJ или ISFP. В нашей статье мы опишем все эти 16 типов личности по шкале Майерс-Бриггс, их сильные и слабые стороны и типы занятости, где они показывают наилучшие результаты.</p>
-            <p>Хотя тест MBTI используется многими организациями для отбора нового персонала и применялся миллионы раз, личностные психологи и другие ученые сообщают, что он имеет относительно небольшую научную обоснованность. Психологи, изучающие личность, обычно полагаются на научно разработанные оценки черт, сгруппированных в пять (большая пятерка) или шесть (HEXACO) категорий. Однако тест Myers-Briggs имеет и множество защитников, которые отстаивают его точность и надежность в плане отбора персонала и предсказания будущей успешности людей на работе. Поэтому MBTI стал популярен среди компаний по всему миру, в том числе в России. По нашим данным, его применяют вместе с другими тестами и опросниками как во многих компаниях, так и в государственных службах и ведомствах.    </div></p>
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <strong>ИНСТРУКЦИЯ:</strong>
-        <p>
-            Этот вопросник предназначен для определения типичных способов поведения и личностных характеристик. Он состоит из 70 утверждений (вопросов), каждое из которых имеет два варианта ответа. Вам необходимо выбрать ОДИН. Все ответы равноценны, среди них нет "пра-вильных" или "неправильных"! Поэтому не нужно "угадывать" ответ.
-            Выберите ответ, который свойствен вашему поведению в большинстве жизненных ситуаций.
-            Работайте последовательно, не пропуская вопросов.
-            Отвечайте правдиво, если вы хотите узнать что-то о себе, а не о какой-то мифической личности.
-        </p>
-    </div>
-</div>
-
-<div class="row mb-5">
-    <a href="{% url 'test_page' %}" class="btn btn-primary btn-lg btn-block">Перейти к тесту</a>
-</div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #19abff;">
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td align="center" valign="top" style="padding: 0 45px;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 30px; margin-bottom: 30px">
+                  <tbody>
+                    <tr>
+                      <td width="510" align="center" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td width="41%" align="left" valign="top">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                  <tr>
+                                    <td align="left" valign="top" style="color: #888888; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 20px; mso-line-height-rule: exactly; line-height: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;"><span><a style="text-decoration: underline !important; color: #fff!important;" href="{% url 'test_page' %}" target="_blank">{% translate "go to test" %}</a></span></td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
 {% endblock content %}

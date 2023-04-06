@@ -1,51 +1,174 @@
 {% extends 'base.html' %}
-
+{% load static i18n %}
 
 {% block style %}
 {{ block.super }}
 <style>
+    .question-forms-list {
+      overflow: hidden;
+      min-width: 100%;
+      width: 0;
+    }
+
     .question-form-item ul {
         list-style: none;
         padding: 0;
     }
 
+    .question-forms-list-controls {
+      display: flex;
+    }
+
+    .question-forms-list-controls>* {
+      width: 100%;
+    }
+
+    .form-group {
+      width: 100%;
+    }
+
+    .form-group ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"]{
+      width: 100%;
+    }
+
     .form-group .errorlist {
         color: #dc3545;
+    }
+
+    .form-group .help-text {
+        display: block;
+        font-size: 8pt;
+        line-height: normal;
     }
 </style>
 {% endblock style %}
 
 
+{% block javascript %}
+{{ block.super }}
+<script>
+  const SLIDER_SELECTOR = ".question-forms-list";
+  $(SLIDER_SELECTOR).on('init', function(event, slick){
+    var errorEl = $(SLIDER_SELECTOR).find('.errorlist').first();
+
+    // Go to error item
+    if (errorEl) {
+      var errorSlider = errorEl.closest(".slick-slide"),
+      sliderInd = $(errorSlider).data("slick-index");
+      slick.slickGoTo(sliderInd);
+    }
+  });
+
+  $(document).ready(function(){
+    $(SLIDER_SELECTOR).slick({
+      infinite: false,
+      arrows : false,
+    });
+  });
+
+  var prevBtn = $('.question-forms-list-controls .prev-btn'),
+    nextBtn = $('.question-forms-list-controls .next-btn');
+
+  // Custom carousel nav
+  prevBtn.click(function(e){
+      e.preventDefault();
+      $(document).find('.question-forms-list.slick-slider').slick('slickPrev');
+  });
+  nextBtn.click(function(e){
+      e.preventDefault();
+      $(document).find('.question-forms-list.slick-slider').slick('slickNext');
+  });
+
+  $(SLIDER_SELECTOR).on('afterChange', function(event, slick, currentSlide, nextSlide) {
+    prevBtn.prop('disabled', false);
+    nextBtn.prop('disabled', false);
+
+    if (currentSlide == 0) {
+      prevBtn.prop('disabled', true);
+    }
+
+    if (currentSlide == slick.slideCount-1) {
+      nextBtn.prop('disabled', true);
+    }
+  });
+</script>
+{% endblock javascript %}
+
 {% block content %}
 
-<div class="row">
-    <h1>
-        Личностный тест Майерс-Бриггс
-    </h1>
-</div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #202020;">
+  <tbody>
+    <tr>
+      <td style="background-image: url({% static 'base/img/bgimg01.jpg' %});background-repeat: no-repeat; background-position: 50% 0;" background="images/bgimg01.jpg" align="center" valign="top">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td align="center" valign="top" style="padding: 0 45px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td align="left" valign="top">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="color: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 17px; mso-line-height-rule: exactly; line-height: 26px; font-weight: 400;">
 
-<div class="row">
-    <form  action="{% url 'test_page' %}" method="post" class="mb-5">
-        {% csrf_token %}
+                                          <form  action="{% url 'test_page' %}" method="post" class="mb-5">
+                                            {% csrf_token %}
 
-        {% include 'personality_test/forms/test_form.html' %}
+                                            {% include 'personality_test/forms/test_form.html' %}
 
-        <hr>
-        <h4>Ответьте  на все вопросы</h4>
+                                            <hr>
+                                            <h4>{% translate "Answer all questions" %}</h4>
 
-        {{ question_forms.management_form }}
+                                            {{ question_forms.management_form }}
 
-        {% for question_form in question_forms %}
+                                            <div class="question-forms-list-wrapper">
+                                              <div class="question-forms-list">
+                                                {% for question_form in question_forms|slice:"4" %}
+                                                    <div>
+                                                        {% include 'personality_test/forms/question_form.html' %}
+                                                    </div>
+                                                {% endfor %}
+                                              </div>
+                                            </div>
 
-            <div class="col-md-12 question-form-item">
-                {% include 'personality_test/forms/question_form.html' %}
-            </div>
+                                            <div class="question-forms-list-controls">
+                                              <button class="ui-btn prev-btn">&laquo; {% translate 'Previous' %}</button>
+                                              <button class="ui-btn next-btn">{% translate 'Next' %} &raquo;</button>
+                                            </div>
 
-            {% if not forloop.last %} <hr>{% endif %}
+                                            <input type="submit" class="ui-btn m-t-2" value="{% translate 'Send' %}">
+                                          </form>
 
-        {% endfor %}
-
-        <input type="submit" class="btn btn-primary" value="Отправить">
-    </form>
-</div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
 {% endblock content %}

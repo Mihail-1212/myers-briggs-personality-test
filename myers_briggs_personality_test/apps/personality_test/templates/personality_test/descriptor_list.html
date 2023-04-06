@@ -1,24 +1,72 @@
 {% extends 'base.html' %}
-
-
-
+{% load static i18n %}
 {% block content %}
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #202020;">
+  <tbody>
+    <tr>
+      <td style="background-image: url({% static 'base/img/bgimg02.jpg' %});background-repeat: no-repeat; background-position: 50% 0;" background="images/bgimg01.jpg" align="center" valign="top">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td align="center" valign="top" style="padding: 0 45px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td align="left" valign="top">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="color: #ffffff; padding-top: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 20px; mso-line-height-rule: exactly; line-height: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;">
+                                        {% translate "Personality types" %}
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td style="padding-top: 19px; line-height: 0px;"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="color: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 17px; mso-line-height-rule: exactly; line-height: 26px; font-weight: 400;">
+                                        <ol style="padding: 0;">
+                                          {% for descriptor in descriptor_list %}
+                                              <li class="list-group-item">
+                                                <h5>{{ descriptor.name }} ({{ descriptor }}) - {{ descriptor.name_decoding }}</h5>
+                                                <p class="mb-1">
+                                                   <a href="{{ descriptor.get_absolute_url }}" class="link-info">{% translate "Go to" %}</a>
+                                                </p>
 
-<h2>Типы личности</h2>
-<div class="row">
-    <div class="col-md-6">
-        <ul class="list-group">
-            {% for descriptor in descriptor_list %}
-                <li class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ descriptor.name }}</h5>
-                        <small>{{ descriptor }}</small>
-                    </div>
-                    <p class="mb-1">{{ descriptor.name_decoding }}</p>
-                    <small><a href="{{ descriptor.get_absolute_url }}" class="link-info">Перейти</a></small>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+                                                  <hr>
+                                              </li>
+                                            {% endfor %}
+                                        </ol>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
 {% endblock content %}
