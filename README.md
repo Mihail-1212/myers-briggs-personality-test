@@ -9,24 +9,34 @@ Requirements:
 ### Быстрый старт
 
 Установить пакеты через pip из файла:
-```
+```commandline
 pip install -r requirements.txt
 ```
 
 Осуществить миграции в базу данных:
-```
+```commandline
 python manage.py migrate
 ```
 
 Загрузить начальную информацию:
-```
+```commandline
 python manage.py load_dummy_questions
 python manage.py load_dummy_descriptor_info
 ```
 
 Запустить приложение:
-```
+```commandline
 python manage.py runserver
+```
+
+Результаты тестирования сохраняются в панели администратора, для входа в нее необходимо создать суперпользователя:
+```commandline
+python manage.py createsuperuser
+```
+
+И перейти в панель администратора по адресу:
+```
+/admin
 ```
 
 ### Структура приложения
@@ -48,4 +58,4 @@ python manage.py runserver
     ├── templates                       # Директория с базовыми шаблонами для сайта
     ├── manage.py                       # Основной файл django
     ├── requirements.txt                # Файл requirements.txt с модулями pip
-    └── README.md                   
+    └── README.md             
